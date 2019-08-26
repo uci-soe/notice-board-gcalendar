@@ -1,13 +1,13 @@
 import React from 'react';
 import LayoutContent from './layout/Content';
 
-import HelloWorldDocs from './components/HelloWorldDocs';
+import TechScheduleDocs from './components/TechScheduleDocs';
 
 const Documentation = () => {
   return (
     <div>
       <LayoutContent>
-        <HelloWorldDocs />
+        <TechScheduleDocs />
       </LayoutContent>
     </div>
   );
