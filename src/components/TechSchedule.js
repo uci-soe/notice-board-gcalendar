@@ -1,7 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-
-import TechScheduleEvent from './TechScheduleEvent';
-
+import React, {useState, useEffect} from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import isToday from 'date-fns/is_today';
 import isTomorrow from 'date-fns/is_tomorrow';
@@ -11,17 +9,10 @@ import addDays from 'date-fns/add_days';
 import parse from 'date-fns/parse';
 
 import './TechSchedule.css';
+import TechScheduleEvent from './TechScheduleEvent';
 
-const KEY = 'AIzaSyC884UUQAzmMC0Qo8Adh8mmD0AYhbrXEUU';
-const ID = '0q1s2mp8o5djpneiftinq3r6so@group.calendar.google.com';
-const URL = `https://www.googleapis.com/calendar/v3/calendars/${ID}/events`;
 const MINUTE = 1000 * 60;
 const MS_IN_DAY = MINUTE * 60 * 24;
-
-
-function getDate(days) {
-  return new Date(Date.now() + (MS_IN_DAY * days));
-}
 
 const propTypes = {
   range: PropTypes.number,
@@ -33,91 +24,81 @@ const propTypes = {
 const defaultProps = {
   range: 2,
   timeMin: getDate(-1),
-  timeMax: getDate(14)
+  timeMax: getDate(14),
+  updateTime: MINUTE * 10,
+  apiKey: null,
+  calendarID: null
 };
 
-class TechSchedule extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      events: [],
+function TechSchedule(props) {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    let update;
+    const updateFunc = () => {
+      getEvents(props.timeMin, props.timeMax, props.calendarID, props.apiKey)
+        .then(events => setEvents(events));
+
+      update = setTimeout(() => {
+        updateFunc();
+      }, props.updateTime);
     };
 
-    this.updateTimeout = null;
-    this.timeout = 10 * MINUTE;
-  }
+    updateFunc();
 
-  getEvents(min, max) {
-    return axios.get(URL, {
-      params: {
-        key: KEY,
-        orderBy: 'startTime',
-        timeMin: min.toISOString(),
-        timeMax: max.toISOString(),
-        singleEvents: true
-      }
-    })
-      .then(resp => resp.data);
-  }
-
-  update(time = this.timeout) {
-    this.updateTimeout = setTimeout(() => {
-
-      this.getEvents(getDate(-1), getDate(14))
-        .then(data => this.setState({events: data.items}));
-
-      this.update(time);
-
-    }, time);
-  }
-
-  componentDidMount() {
-    this.getEvents(getDate(-1), getDate(14))
-      .then(data => this.setState({events: data.items}));
-
-    this.update();
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.updateTimeout);
-  }
-
-  componentDidUpdate() {
-    this.componentWillUnmount();
-    this.componentDidMount();
-  }
-
-  isTodayTomorrow(dateTime, date) {
-    const test = dateTime || date;
-    return isToday(test) || isTomorrow(test);
-  }
-
-  setDays(events, days = this.props.range) {
-    const todayAndTmr = events.filter((e) => this.isTodayTomorrow(e));
-
-    if (todayAndTmr.length < 3) {
-      const today = startOfToday();
-      const maxDays = addDays(today, days);
-      return events.filter(function (e) {
-        const date = e.start.dateTime ? e.start.dateTime : parse(e.start.date);
-        return withinRange(date, today, maxDays);
-      });
+    return () => {
+      clearTimeout(update);
     }
-    return todayAndTmr;
-  }
+  }, [props.timeMin, props.timeMax, props.updateTime, props.calendarID, props.apiKey]);
 
-  render() {
-    const eventsTodayAndTmr = this.setDays(this.state.events || []);
-    const Event = this.props.children || TechScheduleEvent;
-    return (
-      <div className='calendar-events'>
-        {eventsTodayAndTmr.map((e, i) => Event(e, i))}
-      </div>
-    );
-  }
+  const eventsTodayAndTmr = setDays(events);
+  const Event = props.children || TechScheduleEvent;
+  return (
+    <div className='calendar-events'>
+      {eventsTodayAndTmr.map((e, i) => Event(e, i))}
+    </div>
+  );
 }
 
 TechSchedule.propTypes = propTypes;
 TechSchedule.defaultProps = defaultProps;
 
 export default TechSchedule;
+
+//Utility functions
+function getEvents(min, max, ID, KEY) {
+  const URL = `https://www.googleapis.com/calendar/v3/calendars/${ID}/events`;
+  return axios.get(URL, {
+    params: {
+      key: KEY,
+      orderBy: 'startTime',
+      timeMin: min.toISOString(),
+      timeMax: max.toISOString(),
+      singleEvents: true
+    }
+  })
+    .then(resp => resp.data.items);
+}
+
+function isTodayTomorrow(dateTime, date) {
+  const test = dateTime || date;
+  return isToday(test) || isTomorrow(test);
+}
+
+function setDays(events, days = defaultProps.range) {
+  const todayAndTmr = events.filter((e) => isTodayTomorrow(e));
+
+  if (todayAndTmr.length < 5) {
+    const today = startOfToday();
+    const maxDays = addDays(today, days);
+    return events.filter(function (e) {
+      const date = e.start.dateTime ? e.start.dateTime : parse(e.start.date);
+      return withinRange(date, today, maxDays);
+    });
+  }
+  return todayAndTmr;
+}
+
+function getDate(days) {
+  return new Date(Date.now() + (MS_IN_DAY * days));
+}

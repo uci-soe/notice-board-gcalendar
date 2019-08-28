@@ -17,7 +17,7 @@ const example = dedent(`
 
   const Example = () => {
     return (
-      <TechSchedule />
+      <TechSchedule apiKey='...' calendarID='...' />
     );
   };
 
@@ -60,7 +60,8 @@ const Home = ({title, gh}) => {
               ES6 - import the component you need
             </p>
             <div className="docs-example">
-              <TechSchedule />
+              <TechSchedule apiKey='AIzaSyC884UUQAzmMC0Qo8Adh8mmD0AYhbrXEUU'
+              calendarID='0q1s2mp8o5djpneiftinq3r6so@group.calendar.google.com' />
             </div>
             <pre>
               <PrismCode className="language-jsx">
@@ -72,6 +73,6 @@ const Home = ({title, gh}) => {
       </Container>
     </div>
   );
-}
+};
 
 export default Home;

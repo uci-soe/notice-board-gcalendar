@@ -1,8 +1,8 @@
 // export individual components
-import HelloWorld from './HelloWorld';
 import TechSchedule from './TechSchedule';
+import TechScheduleEvent from './TechScheduleEvent';
 
 export {
-  HelloWorld,
-  TechSchedule
+  TechSchedule,
+  TechScheduleEvent
 };

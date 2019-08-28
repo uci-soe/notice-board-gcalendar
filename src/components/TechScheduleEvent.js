@@ -2,6 +2,13 @@ import React from 'react';
 import {format} from "date-fns";
 import isToday from "date-fns/is_today";
 import isTomorrow from "date-fns/is_tomorrow";
+import isMonday from "date-fns/is_monday";
+import isTuesday from "date-fns/is_tuesday";
+import isWednesday from "date-fns/is_wednesday";
+import isThursday from "date-fns/is_thursday";
+import isFriday from "date-fns/is_friday";
+import isSaturday from "date-fns/is_saturday";
+import isSunday from "date-fns/is_sunday";
 
 function formatDescription (desc) {
   if (desc) {
@@ -24,6 +31,16 @@ function displayHRDate(dateTime, date) {
   return dateTime ? format(dateTime, "MMMM DD") : format(date, "MMMM DD")
 }
 
+function displayDayOfWeek(date) {
+  if (isMonday(date)) {return 'Monday';}
+  else if (isTuesday(date)) {return 'Tuesday';}
+  else if (isWednesday(date)) {return 'Wednesday';}
+  else if (isThursday(date)) {return 'Thursday';}
+  else if (isFriday(date)) {return 'Friday';}
+  else if (isSaturday(date)) {return 'Saturday';}
+  else if (isSunday(date)) {return 'Sunday';}
+}
+
 function displayTodayTomorrow(dateTime, date) {
   const test = dateTime || date;
   if (isToday(test)) {
@@ -33,7 +50,7 @@ function displayTodayTomorrow(dateTime, date) {
     return 'Tomorrow';
   }
   else {
-    return '';
+    return displayDayOfWeek(test);
   }
 }
 
