@@ -9,7 +9,7 @@ import {
   Col,
   Row
 } from 'reactstrap';
-import { TechSchedule } from '../components';
+import { TechSchedule, StudentSchedule } from '../components';
 
 const example = dedent(`
   import React from 'react';
@@ -62,6 +62,10 @@ const Home = ({title, gh}) => {
             <div className="docs-example">
               <TechSchedule apiKey='AIzaSyC884UUQAzmMC0Qo8Adh8mmD0AYhbrXEUU'
               calendarID='0q1s2mp8o5djpneiftinq3r6so@group.calendar.google.com' />
+            </div>
+            <div className="docs-example">
+              <StudentSchedule apiKey='AIzaSyC884UUQAzmMC0Qo8Adh8mmD0AYhbrXEUU'
+                               calendarID='u73ap9282bp780pil7dbjefkuc@group.calendar.google.com' />
             </div>
             <pre>
               <PrismCode className="language-jsx">
