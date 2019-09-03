@@ -54,12 +54,9 @@ function TechSchedule(props) {
   const eventsTodayAndTmr = setDays(events);
   const Event = props.children || TechScheduleEvent;
   return (
-    <div className='component'>
-      <h3 className='header'>Google Calendar</h3>
       <div className='calendar-events'>
         {eventsTodayAndTmr.map((e, i) => Event(e, i))}
       </div>
-    </div>
   );
 }
 
