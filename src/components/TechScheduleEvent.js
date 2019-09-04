@@ -24,7 +24,7 @@ function formatDescription (desc) {
 }
 
 function displayTime(startTime, endTime) {
-  return startTime ? `${format(startTime, "h:mm")} - ${format(endTime, "h:mm")}` : `All Day`;
+  return startTime ? `${format(startTime, "h:mm A")} - ${format(endTime, "h:mm A")}` : `All Day`;
 }
 
 function displayHRDate(dateTime, date) {
@@ -57,26 +57,25 @@ function displayTodayTomorrow(dateTime, date) {
 export default function(e, i) {
   return (
     <div className={`event ${i+1}`} key={i}>
-      <div className="d-flex justify-content-between">
-        <div>
-          {displayTime(e.start.dateTime, e.end.dateTime)}
-        </div>
-
+      <div className="d-flex justify-content-between time">
         <div>
           {displayTodayTomorrow(e.start.dateTime, e.start.date)}
         </div>
+        <div>
+          {displayTime(e.start.dateTime, e.end.dateTime)}
+        </div>
       </div>
 
-      <div className="d-flex l-indent">
+      <div className="d-flex">
         <div className='summary'>
           {e.summary}
           {e.description && `: ${formatDescription(e.description)}`}
         </div>
       </div>
 
-      <div className='d-flex justify-content-between l-indent'>
+      <div className='d-flex justify-content-between location'>
         <div>
-          {e.location ? e.location : `Location not set.`}
+          {e.location ? `@ `+ e.location : `@ Location TBD`}
         </div>
 
         <div>

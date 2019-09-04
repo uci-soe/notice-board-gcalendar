@@ -19,7 +19,7 @@ const propTypes = {
 const defaultProps = {
   range: 2,
   timeMin: getDate(-1),
-  timeMax: getDate(5),
+  timeMax: getDate(1),
   updateTime: MINUTE * 10,
   apiKey: null,
   calendarID: null
