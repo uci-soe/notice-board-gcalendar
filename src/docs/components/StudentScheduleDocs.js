@@ -9,8 +9,9 @@ components.push({
   name: 'StudentSchedule',
   proptypes: `
     {
-      name: PropTypes.string,
-      message: PropTypes.string,
+      range: PropTypes.number,
+      timeMin: PropTypes.instanceOf(Date),
+      timeMax: PropTypes.instanceOf(Date),
       children: PropTypes.any
     }
   `
