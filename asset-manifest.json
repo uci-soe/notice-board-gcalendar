@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/notice-board-gcalendar/static/css/main.1a47ab4a.chunk.css",
+    "main.js": "/notice-board-gcalendar/static/js/main.26733b17.chunk.js",
+    "main.js.map": "/notice-board-gcalendar/static/js/main.26733b17.chunk.js.map",
+    "runtime~main.js": "/notice-board-gcalendar/static/js/runtime~main.db05f76b.js",
+    "runtime~main.js.map": "/notice-board-gcalendar/static/js/runtime~main.db05f76b.js.map",
+    "static/css/2.22a7d4ef.chunk.css": "/notice-board-gcalendar/static/css/2.22a7d4ef.chunk.css",
+    "static/js/2.8306a167.chunk.js": "/notice-board-gcalendar/static/js/2.8306a167.chunk.js",
+    "static/js/2.8306a167.chunk.js.map": "/notice-board-gcalendar/static/js/2.8306a167.chunk.js.map",
+    "index.html": "/notice-board-gcalendar/index.html",
+    "precache-manifest.9f7afa908d6113c9a92b0e7e4701f496.js": "/notice-board-gcalendar/precache-manifest.9f7afa908d6113c9a92b0e7e4701f496.js",
+    "service-worker.js": "/notice-board-gcalendar/service-worker.js",
+    "static/css/2.22a7d4ef.chunk.css.map": "/notice-board-gcalendar/static/css/2.22a7d4ef.chunk.css.map",
+    "static/css/main.1a47ab4a.chunk.css.map": "/notice-board-gcalendar/static/css/main.1a47ab4a.chunk.css.map"
+  }
+}
