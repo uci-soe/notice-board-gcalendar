@@ -1,13 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import isToday from 'date-fns/is_today';
 
 import './StudentSchedule.css';
 import StudentScheduleEvent from './StudentScheduleEvent';
-
-const MINUTE = 1000 * 60;
-const MS_IN_DAY = MINUTE * 60 * 24;
+import {getDate, getEvents, MINUTE} from './lib/utils';
 
 const propTypes = {
   range: PropTypes.number,
@@ -59,22 +56,3 @@ StudentSchedule.propTypes = propTypes;
 StudentSchedule.defaultProps = defaultProps;
 
 export default StudentSchedule;
-
-//Utility functions
-function getEvents(min, max, ID, KEY) {
-  const URL = `https://www.googleapis.com/calendar/v3/calendars/${ID}/events`;
-  return axios.get(URL, {
-    params: {
-      key: KEY,
-      orderBy: 'startTime',
-      timeMin: min.toISOString(),
-      timeMax: max.toISOString(),
-      singleEvents: true
-    }
-  })
-    .then(resp => resp.data.items);
-}
-
-function getDate(days) {
-  return new Date(Date.now() + (MS_IN_DAY * days));
-}
