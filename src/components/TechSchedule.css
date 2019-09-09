@@ -3,7 +3,7 @@
   padding: 1.1em 1.3em 1.1em 1.1em;
   border-radius: 25px;
   border-left: 35px solid #ffd200;
-  background-color: rgba(5, 120, 201, 0.75);
+  background-color: rgb(5, 120, 201);
 }
 
 .calendar-events .event .time {

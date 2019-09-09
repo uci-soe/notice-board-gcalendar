@@ -1,17 +1,56 @@
-.calendar-events .event {
-  margin-bottom: 10px
+/*.calendar-events .student-event {*/
+  /*margin-bottom: 10px*/
+/*}*/
+
+/*.calendar-events .student-event .l-indent {*/
+  /*padding-left: 15px*/
+/*}*/
+
+/*.calendar-events .student-event .summary {*/
+  /*white-space: nowrap;*/
+  /*overflow: hidden;*/
+  /*text-overflow: ellipsis;*/
+/*}*/
+
+/*.calendar-events .student-event .summary .desc {*/
+  /*color: #6c757d;*/
+/*}*/
+
+.calendar-events .student-event {
+  /*margin-bottom: 1.3em;*/
+  padding: 1.1em 1.3em 1.1em 1.1em;
+  border-radius: 25px;
+  /*border-left: 35px solid #ffd200;*/
+  border-left-width: 0;
+  text-align: center;
+  background-color: rgb(5, 120, 201);
+  display: inline-block;
+  margin-right: 7px;
 }
 
-.calendar-events .event .l-indent {
-  padding-left: 15px
+.calendar-events .student-event:last-child {
+  margin-right: 0;
 }
 
-.calendar-events .event .summary {
+.calendar-events .student-event .time {
+  color: #f9f9f9;
+  padding-bottom: 1.1em;
+}
+
+.calendar-events .student-event .student-name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 22px;
+  color: #ffd200;
+  font-weight: bold;
+  padding-bottom: 1.1em;
 }
 
-.calendar-events .event .summary .desc {
+.calendar-events .student-event .summary .desc {
   color: #6c757d;
+}
+
+.calendar-events .student-event .location {
+  color: #f9f9f9;
 }
