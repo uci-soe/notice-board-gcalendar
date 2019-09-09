@@ -18,7 +18,7 @@
     "publish-release": "sh ./scripts/publish-release",
     "deploy-docs": "sh ./scripts/docs",
     "ci-deploy-docs": "sh ./scripts/docs-ci",
-    "gh-pages": "REACT_APP_GH_PAGES_PATH='component-template' npm run build"
+    "gh-pages": "REACT_APP_GH_PAGES_PATH='notice-board-gcalendar' npm run build"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
