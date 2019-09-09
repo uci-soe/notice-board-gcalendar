@@ -1,0 +1,30 @@
+.calendar-events .event {
+  margin-bottom: 1.3em;
+  padding: 1.1em 1.3em 1.1em 1.1em;
+  border-radius: 25px;
+  border-left: 35px solid #ffd200;
+  background-color: rgb(5, 120, 201);
+}
+
+.calendar-events .event .time {
+  color: #f9f9f9;
+  padding-bottom: 1.1em;
+}
+
+.calendar-events .event .summary {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 22px;
+  color: #ffd200;
+  font-weight: bold;
+  padding-bottom: 1.1em;
+}
+
+.calendar-events .event .summary .desc {
+  color: #6c757d;
+}
+
+.calendar-events .event .location {
+  color: #f9f9f9;
+}
