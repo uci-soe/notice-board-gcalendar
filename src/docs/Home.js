@@ -33,7 +33,7 @@ const Home = ({title, gh}) => {
             <Col sm={{ size: 10, offset: 1}}>
               <h1 className="display-4">{title}</h1>
               <p className="lead my-3">
-                A Google Calendar Component for UCI School of Education Tech Services Notification Board. Built, documented & published with <a href="https://github.com/uci-soe/notice-board-gcalendar">Component Template</a>
+                A <a href="https://github.com/uci-soe/notice-board-gcalendar">Google Calendar Component</a> for UCI School of Education Tech Services Notification Board. Built, documented & published with <a href="https://github.com/reactstrap/component-template">Component Template</a>
               </p>
               <p>
                 <Button outline color="danger" href={`https://github.com/${gh}`}>View on Github</Button>
