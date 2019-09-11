@@ -1,7 +1,7 @@
 {
   "name": "notice-board-gcalendar",
   "description": "A Google Calendar Component for UCI School of Education Tech Services Notification Board.",
-  "version": "1.1.1",
+  "version": "1.1.0",
   "homepage": "https://uci-soe.github.io/notice-board-gcalendar",
   "repository": {
     "type": "git",
