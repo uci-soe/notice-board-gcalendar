@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import isToday from 'date-fns/is_today';
 
 import './StudentSchedule.css';
 import StudentScheduleEvent from './StudentScheduleEvent';
-import {getDate, getEvents, MINUTE} from './lib/utils';
+import {getDate, getEvents, isTodayTomorrow, MINUTE} from './lib/utils';
 
 const propTypes = {
   range: PropTypes.number,
@@ -19,7 +18,7 @@ const defaultProps = {
   timeMax: getDate(1),
   updateTime: MINUTE * 10,
   apiKey: null,
-  calendarID: null
+  calendarID: null,
 };
 
 function StudentSchedule(props) {
@@ -43,7 +42,7 @@ function StudentSchedule(props) {
     }
   }, [props.timeMin, props.timeMax, props.updateTime, props.calendarID, props.apiKey]);
 
-  const eventsToday = events.filter((e) => isToday(e.start.dateTime));
+  const eventsToday = events.filter((e) => isTodayTomorrow(e.start.dateTime));
   const Event = props.children || StudentScheduleEvent;
   return (
     <div className='calendar-events'>
