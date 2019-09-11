@@ -1,4 +1,4 @@
-import {format} from "date-fns";
+import format from "date-fns/format";
 import isToday from "date-fns/is_today";
 import isTomorrow from "date-fns/is_tomorrow";
 import isMonday from "date-fns/is_monday";
@@ -11,11 +11,14 @@ import isSunday from "date-fns/is_sunday";
 import axios from 'axios';
 import startOfToday from "date-fns/start_of_today";
 import addDays from "date-fns/add_days";
+import addMinutes from "date-fns/add_minutes";
+import subMinutes from "date-fns/sub_minutes";
 import parse from "date-fns/parse";
 import withinRange from "date-fns/is_within_range";
 
 export const MINUTE = 1000 * 60;
 export const MS_IN_DAY = MINUTE * 60 * 24;
+export {format, isToday, isTomorrow, isTodayTomorrow, withinRange, addMinutes, subMinutes};
 
 export function formatDescription(desc) {
   if (desc) {
