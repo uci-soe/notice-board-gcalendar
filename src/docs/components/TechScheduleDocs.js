@@ -44,13 +44,53 @@ examples.push({
 });
 
 examples.push({
+  name: 'TechSchedule - Empty',
+  demo: (
+    <TechSchedule limit={0} apiKey={KEY} calendarID={ID} />
+  ),
+  source: `
+    <TechSchedule limit={0} apiKey='...' calendarID='...'/>
+  `
+});
+
+function CustomNoEvents() {
+  return (
+    <div className="empty-event">
+      <h2>No events today</h2>
+      <p>Nothing to see here, move along. Check back in tomorrow.</p>
+    </div>
+  );
+}
+
+examples.push({
+  name: 'TechSchedule - Custom Empty',
+  demo: (
+    <TechSchedule limit={0} noEvent={CustomNoEvents} apiKey={KEY} calendarID={ID} />
+  ),
+  source: `
+    function CustomNoEvents() {
+      return (
+        <div className="empty-event">
+          <h2>No events today</h2>
+          <p>Nothing to see here, move along. Check back in tomorrow.</p>
+        </div>
+      );
+    }
+    
+    /* ... */
+    
+    <TechSchedule limit={0} noEvent={CustomNoEvents} apiKey='...' calendarID='...'/>
+  `
+});
+
+examples.push({
   name: 'TechSchedule - Custom Event',
   demo: (
     <TechSchedule apiKey={KEY} calendarID={ID}>
       {(event) => {
         return <div key={event.id}>
           {event.summary}
-        </div>
+        </div>;
       }}
     </TechSchedule >
   ),
@@ -59,7 +99,7 @@ examples.push({
       {(event) => {
         return <div key={event.id}>
           {event.summary}
-        </div>
+        </div>;
       }}
     </TechSchedule>
   `

@@ -4,21 +4,26 @@ import {setDays, getEvents, getDate, MINUTE} from './lib/utils';
 
 import './TechSchedule.css';
 import TechScheduleEvent from './TechScheduleEvent';
+import CalendarNoEvent from './CalendarNoEvent';
 
 const propTypes = {
   range: PropTypes.number,
+  limit: PropTypes.number,
   timeMin: PropTypes.instanceOf(Date),
   timeMax: PropTypes.instanceOf(Date),
-  children: PropTypes.any
+  children: PropTypes.any,
+  noEvent: PropTypes.any
 };
 
 const defaultProps = {
   range: 2,
-  timeMin: getDate(-1),
+  limit: -1,
+  timeMin: getDate(0),
   timeMax: getDate(14),
   updateTime: MINUTE * 10,
   apiKey: null,
-  calendarID: null
+  calendarID: null,
+  noEvent: null
 };
 
 function TechSchedule(props) {
@@ -42,11 +47,17 @@ function TechSchedule(props) {
     }
   }, [props.timeMin, props.timeMax, props.updateTime, props.calendarID, props.apiKey]);
 
-  const eventsTodayAndTmr = setDays(events, props.range);
   const Event = props.children || TechScheduleEvent;
+  const noEvent = props.noEvent || CalendarNoEvent;
+
+  let eventsTodayAndTmr = setDays(events, props.range);
+  if (props.limit >= 0) {
+    eventsTodayAndTmr = eventsTodayAndTmr.slice(0, props.limit);
+  }
+
   return (
       <div className='calendar-events'>
-        {eventsTodayAndTmr.map((e, i) => Event(e, i))}
+        {eventsTodayAndTmr.length ? eventsTodayAndTmr.map((e, i) => Event(e, i)) : noEvent()}
       </div>
   );
 }

@@ -44,6 +44,46 @@ examples.push({
 });
 
 examples.push({
+  name: 'StudentSchedule - Empty',
+  demo: (
+    <StudentSchedule limit={0} apiKey={KEY} calendarID={ID} />
+  ),
+  source: `
+    <StudentSchedule limit={0} apiKey='...' calendarID='...'/>
+  `
+});
+
+function CustomNoEvents() {
+  return (
+    <div className="empty-event">
+      <h2>No events today</h2>
+      <p>Nothing to see here, move along. Check back in tomorrow.</p>
+    </div>
+  );
+}
+
+examples.push({
+  name: 'StudentSchedule - Custom Empty',
+  demo: (
+    <StudentSchedule limit={0} noEvent={CustomNoEvents} apiKey={KEY} calendarID={ID} />
+  ),
+  source: `
+    function CustomNoEvents() {
+      return (
+        <div className="empty-event">
+          <h2>No events today</h2>
+          <p>Nothing to see here, move along. Check back in tomorrow.</p>
+        </div>
+      );
+    }
+    
+    /* ... */
+    
+    <StudentSchedule limit={0} noEvent={CustomNoEvents} apiKey='...' calendarID='...'/>
+  `
+});
+
+examples.push({
   name: 'StudentSchedule - Custom Event',
   demo: (
     <StudentSchedule apiKey={KEY} calendarID={ID}>

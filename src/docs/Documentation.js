@@ -3,6 +3,7 @@ import LayoutContent from './layout/Content';
 
 import TechScheduleDocs from './components/TechScheduleDocs';
 import StudentScheduleDocs from './components/StudentScheduleDocs';
+import CalendarNoEvent from '../components/CalendarNoEvent';
 
 const Documentation = () => {
   return (
@@ -10,6 +11,7 @@ const Documentation = () => {
       <LayoutContent>
         <TechScheduleDocs />
         <StudentScheduleDocs />
+        <CalendarNoEvent />
       </LayoutContent>
     </div>
   );
