@@ -103,8 +103,23 @@ function isTodayTomorrow(dateTime, date) {
   return isToday(test) || isTomorrow(test);
 }
 
+function nextWorkingDay(date) {
+  let result = addDays(date, 1);
+    while (isSaturday(result) || isSunday(result)) {
+      result = addDays(result, 1);
+    }
+  return result;
+}
+
 export function setDays(events, days) {
-  const todayAndTmr = events.filter((e) => isTodayTomorrow(e));
+  const todayAndTmr = events.filter(function(e) {
+    // const now = new Date(Date.now());
+    // const start = e.start.dateTime || e.start.date;
+    // const end = e.end.dateTime || e.end.date;
+    const nextDay = nextWorkingDay(e);
+    // return withinRange(now, start, end) || isTodayTomorrow(nextDay);
+    return isTodayTomorrow(nextDay);
+  });
 
   if (todayAndTmr.length < 5) {
     const today = startOfToday();
