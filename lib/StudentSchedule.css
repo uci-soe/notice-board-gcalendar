@@ -16,16 +16,34 @@
   /*color: #6c757d;*/
 /*}*/
 
-.calendar-events .student-event {
+.calendar-events .student-event,
+.calendar-events .student-event.in-now {
   /*margin-bottom: 1.3em;*/
   padding: 1.1em 1.3em 1.1em 1.1em;
   border-radius: 25px;
-  /*border-left: 35px solid #ffd200;*/
-  border-left-width: 0;
+  border-top: 35px solid #ffd200;
+  /*border-left-width: 0;*/
   text-align: center;
   background-color: rgb(5, 120, 201);
   display: inline-block;
   margin-right: 7px;
+}
+
+.calendar-events .student-event.in-soon{
+  border-top: 35px solid #00ff38;
+}
+
+.calendar-events .student-event.just-left {
+  border-top: 35px solid #f78d2d;
+}
+
+.calendar-events .student-event.in-tmr {
+  border-top: 35px solid #555759;
+  background-color: rgb(198, 190, 181);
+}
+
+.calendar-events .student-event.gone {
+  display: none;
 }
 
 .calendar-events .student-event:last-child {

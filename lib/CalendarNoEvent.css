@@ -1,0 +1,15 @@
+.calendar-events > .no-content::before {
+  content: 'There are no events to display.';
+  color: #ffd200;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 1.1em;
+  text-align: center;
+  background-color: rgb(5, 120, 201);
+  border-radius: 25px;
+  display: inline-block;
+}
+
+.calendar-events > .no-content.student::before {
+  content: 'There are no students in today.';
+}
